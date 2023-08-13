@@ -23,7 +23,7 @@ jobs:
         run: |
           git clone --depth=1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 aarch64-linux-android-4.9
           git clone --depth=1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9 arm-linux-androideabi-4.9
-          mkdir clang && git clone -b clang-12.0 https://github.com/kutemeikito/RastaMod69-Clang.git clang
+          mkdir clang && git clone -b clang-12.0 https://github.com/kutemeikito/RastaMod69-Clang.git clang --depth=1
 
       - name: Pull kernel source
         run: |
@@ -33,7 +33,7 @@ jobs:
       - name: Build kernel
         run: |
           export KBUILD_BUILD_USER="roniw43"
-          export KBUILD_BUILD_HOST="Amateur_Man"
+          export KBUILD_BUILD_HOST="AmateurMan"
           export PATH=$GITHUB_WORKSPACE/clang/bin:${PATH}
           args="                  ARCH=arm64 \
                                   O=../out \
@@ -42,7 +42,8 @@ jobs:
                                   CROSS_COMPILE=$GITHUB_WORKSPACE/aarch64-linux-android-4.9/bin/aarch64-linux-android- \
                                   CROSS_COMPILE_ARM32=$GITHUB_WORKSPACE/arm-linux-androideabi-4.9/bin/arm-linux-androideabi- "
           cd kernel-source
-          curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+          curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+          git apply KernelSU-hook.patch
           make ${args} vendor/ginkgo-perf_defconfig
           make -j$(($(getconf _NPROCESSORS_ONLN) * 2)) ${args}
 
