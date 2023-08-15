@@ -35,9 +35,6 @@ jobs:
           export KBUILD_BUILD_HOST="AmateurMan"
           export PATH=$GITHUB_WORKSPACE/clang/bin:${PATH}
           args="                  ARCH=arm64 \
-                                  CC="clang" \
-                                  AR="llvm-ar" \
-                                  NM="llvm-nm" \
                                   O=../out \
                                   ${{ env.BUILD_ARGS }} \
                                   CLANG_TRIPLE=aarch64-linux-gnu- \
