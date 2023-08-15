@@ -22,7 +22,7 @@ jobs:
 
       - name: Pull toolchain
         run: |
-          mkdir clang && git clone -b clang-13.0 https://github.com/kutemeikito/RastaMod69-Clang.git clang --depth=1
+          mkdir clang && git clone -b clang-12.0 https://github.com/kutemeikito/RastaMod69-Clang.git clang --depth=1
 
       - name: Pull kernel source
         run: |
