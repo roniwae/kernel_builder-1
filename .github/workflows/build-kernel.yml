@@ -12,17 +12,18 @@ jobs:
       - uses: actions/checkout@v3
       - name: Setup environment
         run: |
-          sudo apt update -y && sudo apt upgrade -y && sudo apt install python2 -y
+          sudo apt install python2 -y
           echo "ANYKERNEL_SOURCE=$(cat config.env | grep -w "ANYKERNEL_SOURCE" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
           echo "ANYKERNEL_SOURCE_BRANCH=$(cat config.env | grep -w "ANYKERNEL_SOURCE_BRANCH" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
           echo "KERNEL_SOURCE=$(cat config.env | grep -w "KERNEL_SOURCE" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
           echo "KERNEL_SOURCE_BRANCH=$(cat config.env | grep -w "KERNEL_SOURCE_BRANCH" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
           echo "KERNEL_TARGET=$(cat config.env | grep -w "KERNEL_TARGET" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
           echo "BUILD_ARGS=$(cat config.env | grep -w "BUILD_ARGS" | head -n 1 | cut -d ":" -f 2)" >> $GITHUB_ENV
+          DATE=$(date +"%F-%S")
 
       - name: Pull toolchain
         run: |
-          mkdir clang && git clone -b clang-13.0 https://github.com/kutemeikito/RastaMod69-Clang.git clang --depth=1
+          mkdir clang && git clone -b clang-12.0 https://github.com/kutemeikito/RastaMod69-Clang.git clang --depth=1
 
       - name: Pull kernel source
         run: |
@@ -65,5 +66,5 @@ jobs:
       - name: Upload kernel to artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Ryzen-Kernel-MiuiQ-ksu
+          name: Ryzen-Kernel-MiuiQ-ksu-${DATE}
           path: AnyKernel3/*
