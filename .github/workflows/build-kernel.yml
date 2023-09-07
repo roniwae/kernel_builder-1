@@ -19,7 +19,7 @@ jobs:
           echo "KERNEL_SOURCE_BRANCH=$(cat config.env | grep -w "KERNEL_SOURCE_BRANCH" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
           echo "KERNEL_TARGET=$(cat config.env | grep -w "KERNEL_TARGET" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
           echo "BUILD_ARGS=$(cat config.env | grep -w "BUILD_ARGS" | head -n 1 | cut -d ":" -f 2)" >> $GITHUB_ENV
-          echo "DATE=$(date +"%F-%S")" >> $GITHUB_ENV
+          echo "BUILD_TIME=$(TZ=Asia/Jakarta date "+%Y%m%d%H%M")" >> $GITHUB_ENV
 
       - name: Pull toolchain
         run: |
@@ -66,5 +66,5 @@ jobs:
       - name: Upload kernel to artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Ryzen-Kernel-MiuiQ-ksu-${DATE}
+          name: Ryzen-Kernel-MiuiQ-ksu-${{ env.BUILD_TIME }}
           path: AnyKernel3/*
