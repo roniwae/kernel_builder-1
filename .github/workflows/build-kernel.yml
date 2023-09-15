@@ -66,5 +66,5 @@ jobs:
       - name: Upload kernel to artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Ryzen-Kernel-MiuiQ-ksu-${{ env.BUILD_TIME }}
+          name: Ryzen-Kernel-MiuiP-${{ env.BUILD_TIME }}
           path: AnyKernel3/*
