@@ -23,7 +23,7 @@ jobs:
 
       - name: Pull toolchain
         run: |
-          mkdir clang && git clone -b 11.x https://github.com/roniwae/stormbreaker-clang clang --depth=1
+          mkdir clang && git clone -b 10.0.9 https://github.com/xiangfeidexiaohuo/Snapdragon-LLVM.git clang --depth=1
 
       - name: Pull kernel source
         run: |
