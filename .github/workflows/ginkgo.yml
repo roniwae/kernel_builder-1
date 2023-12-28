@@ -1,4 +1,4 @@
-name: Build Kernel
+name: ginkgo
 
 
 on:
@@ -23,7 +23,7 @@ jobs:
 
       - name: Pull toolchain
         run: |
-          mkdir clang && git clone -b clang-12.0 https://github.com/kutemeikito/RastaMod69-Clang.git clang --depth=1
+          mkdir clang && git clone -b clang-13.0 https://github.com/kutemeikito/RastaMod69-Clang.git clang --depth=1
 
       - name: Pull kernel source
         run: |
@@ -65,5 +65,5 @@ jobs:
       - name: Upload kernel to artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Ryzen-Kernel-MiuiQ-ksu-${{ env.BUILD_TIME }}
+          name: ginkgo-${{ env.BUILD_TIME }}
           path: AnyKernel3/*
