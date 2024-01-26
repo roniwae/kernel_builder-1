@@ -32,6 +32,7 @@ jobs:
           
       - name: Build kernel
         run: |
+          echo "OEM_KERNEL_VERSION=$(make kernelversion)" >> $GITHUB_ENV
           export KBUILD_BUILD_USER="Kernel"
           export KBUILD_BUILD_HOST="Koplak"
           export PATH=$GITHUB_WORKSPACE/clang/bin:${PATH}
@@ -65,5 +66,5 @@ jobs:
       - name: Upload kernel to artifact
         uses: actions/upload-artifact@v3
         with:
-          name: linux-v4.14.333-${{ env.BUILD_TIME }}
+          name: Muse-${{ env.OEM_KERNEL_VERSION }}-${{ env.BUILD_TIME }}
           path: AnyKernel3/*
