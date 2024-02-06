@@ -23,7 +23,7 @@ jobs:
 
       - name: Pull toolchain
         run: |
-          mkdir clang && git clone -b clang-17.0 https://github.com/mARk-android/mARkClang-17.git clang --depth=1
+          mkdir clang && git clone https://github.com/mARk-android/mARkClang-17.git clang --depth=1
 
       - name: Pull kernel source
         run: |
